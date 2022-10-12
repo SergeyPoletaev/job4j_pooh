@@ -11,7 +11,7 @@
 
 Архитектура проекта:
 
-![alt tag](https://job4j.ru/api/images/imageTaskSource?imageId=897)
+![](../../Загрузки/imageTaskSource.png)
 
 [![build](https://github.com/SergeyPoletaev/job4j_pooh/workflows/build/badge.svg)](https://github.com/SergeyPoletaev/job4j_pooh/actions)
 
