@@ -9,4 +9,5 @@
 * В качестве клиента будем использовать cURL.
 * В качестве протокола будем использовать HTTP.
 
+[![build](https://github.com/SergeyPoletaev/job4j_pooh/workflows/build/badge.svg)](https://github.com/SergeyPoletaev/job4j_pooh/actions)
 
