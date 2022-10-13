@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class QueueServiceTest {
+public class QueueServiceTest {
 
     @Test
-    void whenPostThenGetQueue() {
+    public void whenPostThenGetQueue() {
         Service queueService = new QueueService();
         String paramForPostMethod = "temperature=18";
         /* Добавляем данные в очередь weather. Режим queue */
@@ -22,7 +22,7 @@ class QueueServiceTest {
     }
 
     @Test
-    void whenThereIsNoPostThenGetIsAnEmptyString() {
+    public void whenThereIsNoPostThenGetIsAnEmptyString() {
         Service queueService = new QueueService();
         /* Забираем данные из очереди weather. Режим queue. Добавление в очередь никогда не производилось */
         Resp result = queueService.process(
