@@ -30,6 +30,20 @@ public class TopicServiceTest {
                 new Req("GET", "topic", "weather", paramForSubscriber2)
         );
         assertThat(result1.text()).isEqualTo("temperature=18");
+        assertThat(result1.status()).isEqualTo("200");
         assertThat(result2.text()).isEqualTo("");
+        assertThat(result2.status()).isEqualTo("204");
+    }
+
+    @Test
+    public void whenTheRequestTypeIsNeitherPostNorGet() {
+        Service queueService = new QueueService();
+        String paramForPostMethod = "temperature=18";
+        /* Забираем данные из очереди weather. Режим queue. Добавление в очередь никогда не производилось */
+        Resp result = queueService.process(
+                new Req("UPDATE", "topic", "weather", paramForPostMethod)
+        );
+        assertThat(result.text()).isEqualTo("");
+        assertThat(result.status()).isEqualTo("501");
     }
 }

@@ -12,12 +12,15 @@ public class QueueService implements Service {
     public Resp process(Req req) {
         String sourceName = req.getSourceName();
         String param = req.getParam();
+        Resp rsl = new Resp("", Status.NOT_IMPLEMENTED.getValue());
         if (Objects.equals(req.httpRequestType(), TypeRequest.GET.getValue())) {
             String text = queue.getOrDefault(sourceName, new ConcurrentLinkedQueue<>()).poll();
-            return new Resp(text != null ? text : "", Status.OK.getValue());
+            rsl = new Resp(text != null ? text : "", text != null ? Status.OK.getValue() : Status.NO_CONTENT.getValue());
+        } else if (Objects.equals(req.httpRequestType(), TypeRequest.POST.getValue())) {
+            queue.putIfAbsent(sourceName, new ConcurrentLinkedQueue<>());
+            queue.get(sourceName).add(param);
+            rsl = new Resp(param, Status.OK.getValue());
         }
-        queue.putIfAbsent(sourceName, new ConcurrentLinkedQueue<>());
-        queue.get(sourceName).add(param);
-        return new Resp(param, Status.OK.getValue());
+        return rsl;
     }
 }

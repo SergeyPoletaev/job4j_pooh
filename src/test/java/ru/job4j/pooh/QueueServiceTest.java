@@ -19,6 +19,7 @@ public class QueueServiceTest {
                 new Req("GET", "queue", "weather", null)
         );
         assertThat(result.text()).isEqualTo("temperature=18");
+        assertThat(result.status()).isEqualTo("200");
     }
 
     @Test
@@ -29,5 +30,18 @@ public class QueueServiceTest {
                 new Req("GET", "queue", "weather", null)
         );
         assertThat(result.text()).isEqualTo("");
+        assertThat(result.status()).isEqualTo("204");
+    }
+
+    @Test
+    public void whenTheRequestTypeIsNeitherPostNorGet() {
+        Service queueService = new QueueService();
+        String paramForPostMethod = "temperature=18";
+        /* Забираем данные из очереди weather. Режим queue. Добавление в очередь никогда не производилось */
+        Resp result = queueService.process(
+                new Req("UPDATE", "queue", "weather", paramForPostMethod)
+        );
+        assertThat(result.text()).isEqualTo("");
+        assertThat(result.status()).isEqualTo("501");
     }
 }

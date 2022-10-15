@@ -2,7 +2,8 @@ package ru.job4j.pooh;
 
 public enum Status {
     OK("200"),
-    SERVER_ERROR("500");
+    NO_CONTENT("204"),
+    NOT_IMPLEMENTED("501");
 
     private final String value;
 
