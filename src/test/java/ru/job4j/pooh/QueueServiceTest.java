@@ -37,7 +37,7 @@ public class QueueServiceTest {
     public void whenTheRequestTypeIsNeitherPostNorGet() {
         Service queueService = new QueueService();
         String paramForPostMethod = "temperature=18";
-        /* Забираем данные из очереди weather. Режим queue. Добавление в очередь никогда не производилось */
+        /* Обновляем данные в очереди weather. Режим queue. Добавление в очередь никогда не производилось */
         Resp result = queueService.process(
                 new Req("UPDATE", "queue", "weather", paramForPostMethod)
         );

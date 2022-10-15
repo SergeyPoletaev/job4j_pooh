@@ -37,10 +37,10 @@ public class TopicServiceTest {
 
     @Test
     public void whenTheRequestTypeIsNeitherPostNorGet() {
-        Service queueService = new QueueService();
+        Service topicService = new TopicService();
         String paramForPostMethod = "temperature=18";
-        /* Забираем данные из очереди weather. Режим queue. Добавление в очередь никогда не производилось */
-        Resp result = queueService.process(
+        /* Обновляем данные в топик weather. Режим topic. Добавление в очередь никогда не производилось */
+        Resp result = topicService.process(
                 new Req("UPDATE", "topic", "weather", paramForPostMethod)
         );
         assertThat(result.text()).isEqualTo("");
